@@ -27,7 +27,7 @@ class JsonFormatter(logging.Formatter):
             return "Exception: %s" % str(obj)
         return str(obj)
 
-    def format(self, record):
+    def format(self, record, extra=None):
         msg = {
             'msg': record.msg,
             'logged_at': datetime.datetime.now().isoformat(),
@@ -36,6 +36,9 @@ class JsonFormatter(logging.Formatter):
             'level': self.level_to_name_mapping[record.levelno],
             'path': record.pathname
         }
+
+        if extra:
+            msg.update(extra)
 
         if record.exc_info:
             msg['exc_info'] = record.exc_info

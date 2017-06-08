@@ -22,6 +22,7 @@ class LoggerTests(unittest.TestCase):
         handler.setLevel(logging.DEBUG)
         handler.setFormatter(JsonFormatter(json.dumps))
         logging.getLogger().addHandler(handler)
+        logging.getLogger().setLevel(logging.INFO)
 
     def test_it_logs_valid_json_string_if_message_is_json_serializeable(self):
         message = {
@@ -32,7 +33,7 @@ class LoggerTests(unittest.TestCase):
             }
         }
 
-        logging.error(message)
+        logging.info(message)
 
         logged_content = self.buffer.getvalue()
         json_log = json.loads(logged_content)
@@ -45,7 +46,7 @@ class LoggerTests(unittest.TestCase):
 
         obj = FooJsonUnserializeable()
         message = {'info': obj}
-        logging.error(message)
+        logging.info(message)
 
         logged_content = self.buffer.getvalue()
         json_log = json.loads(logged_content)
@@ -55,7 +56,7 @@ class LoggerTests(unittest.TestCase):
     def test_it_escapes_strings(self):
         message = """"Aaaalgma coisa"paando `bem por'/\t \\" \" \' \n "aaa """
 
-        logging.error(message)
+        logging.info(message)
 
         logged_content = self.buffer.getvalue()
         json_log = json.loads(logged_content)
@@ -66,7 +67,7 @@ class LoggerTests(unittest.TestCase):
     def test_it_logs_current_log_time(self):
         now = datetime.now().isoformat()
 
-        logging.error("Batemos tambores, eles panela.")
+        logging.info("Batemos tambores, eles panela.")
 
         logged_content = self.buffer.getvalue()
         json_log = json.loads(logged_content)
@@ -111,3 +112,19 @@ class LoggerTests(unittest.TestCase):
             'datetime': message['datetime'].isoformat()
         }
         self.assertDictEqual(json_log['msg'], expected_output)
+
+    def test_extra_fields(self):
+        logging.info('Isto é um teste', extra={'field_1': 'field_1 content',
+                                               'field_2': 'field_2 content',
+                                               'field_3': 'field_3 content'})
+
+        logged_content = self.buffer.getvalue()
+        json_log = json.loads(logged_content)
+
+        expected_output = {
+            'msg': 'Isto é um teste',
+            'field_1': 'field_1 content',
+            'field_2': 'field_2 content',
+            'field_3': 'field_3 content'
+        }
+        self.assertDictContainsSubset(expected_output, json_log)
