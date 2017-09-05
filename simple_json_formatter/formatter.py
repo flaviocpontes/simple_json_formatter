@@ -6,11 +6,11 @@ import traceback
 from inspect import istraceback
 
 
-class JsonFormatter(logging.Formatter):
+class SimpleJsonFormatter(logging.Formatter):
     level_to_name_mapping = _levelToName
 
     def __init__(self, serializer):
-        super(JsonFormatter, self).__init__()
+        super(SimpleJsonFormatter, self).__init__()
         self.serializer = serializer
 
     @staticmethod
@@ -26,9 +26,10 @@ class JsonFormatter(logging.Formatter):
 
     def format(self, record):
         msg = {
-            'logged_at': datetime.datetime.now().isoformat(),
+            'timestamp': datetime.datetime.now().isoformat(),
             'line_number': record.lineno,
             'function': record.funcName,
+            'module': record.module,
             'level': self.level_to_name_mapping[record.levelno],
             'path': record.pathname
         }

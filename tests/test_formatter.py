@@ -5,7 +5,7 @@ import inspect
 from datetime import datetime
 from io import StringIO
 
-from simple_json_formatter import JsonFormatter
+from simple_json_formatter import SimpleJsonFormatter
 from freezegun import freeze_time
 
 
@@ -14,7 +14,7 @@ class LoggerTests(unittest.TestCase):
         self.buffer = StringIO()
         handler = logging.StreamHandler(stream=self.buffer)
         handler.setLevel(logging.DEBUG)
-        handler.setFormatter(JsonFormatter(json.dumps))
+        handler.setFormatter(SimpleJsonFormatter(json.dumps))
         logging.getLogger().addHandler(handler)
         logging.getLogger().setLevel(logging.INFO)
 
@@ -66,7 +66,7 @@ class LoggerTests(unittest.TestCase):
         logged_content = self.buffer.getvalue()
         json_log = json.loads(logged_content)
 
-        self.assertEqual(json_log['logged_at'], now)
+        self.assertEqual(json_log['timestamp'], now)
 
     def test_it_logs_exceptions_tracebacks(self):
         exception_message = "Carros importados pra garantir os translados"

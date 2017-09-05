@@ -1,1 +1,1 @@
-from .formatter import JsonFormatter
+from .formatter import SimpleJsonFormatter
