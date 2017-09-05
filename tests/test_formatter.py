@@ -4,12 +4,6 @@ import json
 import inspect
 from datetime import datetime
 from io import StringIO
-from sys import stdout
-try:
-    from unittest.mock import Mock, call, patch
-except ImportError:
-    # python 2.7
-    from mock import Mock, call, patch
 
 from simple_json_formatter import JsonFormatter
 from freezegun import freeze_time
@@ -26,7 +20,7 @@ class LoggerTests(unittest.TestCase):
 
     def test_it_logs_valid_json_string_if_message_is_json_serializeable(self):
         message = {
-            'info': 'Se tem permissao, tamo dando sarrada',
+            'info': 'Se tem permissao, vamos nessa',
             'msg': {
                 'foo': 'bar',
                 'baz': 'blu'
@@ -38,7 +32,7 @@ class LoggerTests(unittest.TestCase):
         logged_content = self.buffer.getvalue()
         json_log = json.loads(logged_content)
 
-        self.assertDictEqual(json_log['msg'], message)
+        self.assertDictContainsSubset(message, json_log)
 
     def test_it_logs_valid_json_string_if_message_isnt_json_serializeable(self):
         class FooJsonUnserializeable:
@@ -51,7 +45,7 @@ class LoggerTests(unittest.TestCase):
         logged_content = self.buffer.getvalue()
         json_log = json.loads(logged_content)
 
-        self.assertDictEqual(json_log['msg'], {'info': str(obj)})
+        self.assertDictContainsSubset({'info': str(obj)}, json_log)
 
     def test_it_escapes_strings(self):
         message = """"Aaaalgma coisa"paando `bem por'/\t \\" \" \' \n "aaa """
@@ -111,7 +105,7 @@ class LoggerTests(unittest.TestCase):
             'time': message['time'].isoformat(),
             'datetime': message['datetime'].isoformat()
         }
-        self.assertDictEqual(json_log['msg'], expected_output)
+        self.assertDictContainsSubset(expected_output, json_log)
 
     def test_extra_fields(self):
         logging.info('Isto é um teste', extra={'field_1': 'field_1 content',
@@ -128,3 +122,4 @@ class LoggerTests(unittest.TestCase):
             'field_3': 'field_3 content'
         }
         self.assertDictContainsSubset(expected_output, json_log)
+
