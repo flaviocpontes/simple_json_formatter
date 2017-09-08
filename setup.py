@@ -6,7 +6,7 @@ setup(
     name='simple_json_formatter',
     license='MIT',
     version=VERSION,
-    packages=find_packages(exclude=['*test*']),
+    packages=find_packages(exclude=['tests']),
     url='https://github.com/flaviocpontes/simple_json_formatter',
     author='Flávio Cardoso Ferreira Pontes',
     author_email='flaviocpontes@gmail.com',
@@ -21,5 +21,5 @@ setup(
         'Programming Language :: Python :: 3.6'
     ],
     test_suite='tests',
-    tests_require=['freezegun']
+    tests_require=['freezegun', 'coverage', 'codecov']
 )

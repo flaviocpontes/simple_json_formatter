@@ -1,9 +1,18 @@
 language: python
 python:
-  - "3.4"
-  - "3.5"
-  - "3.6"
-  - "nightly" # currently points to 3.7-dev
-  - "pypy3"
-install: "pip install .[dev]"
-script: python setup.py test
+- '3.4'
+- '3.5'
+- '3.6'
+- nightly
+- pypy3
+install: pip install .[dev]
+script: coverage run setup.py test
+after_success:
+  - codecov
+deploy:
+  provider: pypi
+  user: "flaviocpontes"
+  password:
+    secure: Ovw8e/F52+b1SRjoaTcN7R+vnFX+HWUjxUfvx4URXVxeGI3IKVGMLkSBjvvqsRUuB/QQgvcEQuuB1sh+bzoj0OXHQo9lm3Azji6am8WxwaVuA6zQF2Cwo48Qr7rvvwT4UYsLftSNS2cqo2ijdpzni2CG9dvNFqRN2Xgmbq3q6CwsFpq2tygpobdTG/Lv2U6spQtt4k9MIx5ze9okdipKdJGh0ai+M64VgQYsVCEA+hrskxuS7VTc9Md+r9PDnqEL9Zo0gvkI1h0Cu8cZLb7cv3FSw9l5HWMXuI5Lb7hyH8AAqHqvjcvjMWeu064rgbDWSSTBNpODVGFJ5c6eNqK2BeQh500iynJx6AZqtntK/jF7yZylahGn8EsjZHGwmSM5nGzFxlMJr61qNi9Ln+d+NPxYnPzAJfX7B7S7Hncm+OTPAdNQFjwMZ5+I5vu+TQSUvYsa67OoO+LvF5UvsrDOMNgkJ9SK0d0YyKK1naKTaRj3hLhi12CPsICEwp2N92aIbTBtwp0B0t8DS68ywdwKyN9mKAFgsHyi3YKx+gS9OCoX5xkWvaoRZiNb/aM8pxAEGq0S4AO9QGGtzO+x55/q3pkCWFTuYSe7bdA8aN50PblHiiygSFGlYVJ+1D7qMkIHgWioE0MikiyzQUUUqol6gxgqkD+Vwvh1zi/vaYsW9oM=
+  on:
+    tags: true
