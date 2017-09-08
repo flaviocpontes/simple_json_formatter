@@ -5,6 +5,13 @@ import datetime
 import traceback
 from inspect import istraceback
 
+DEFAULT_LOG_RECORD_FIELDS = {'name', 'msg', 'args', 'levelname', 'levelno',
+                             'pathname', 'filename', 'module', 'exc_info',
+                             'exc_class', 'exc_msg', 'exc_traceback',
+                             'exc_text', 'stack_info', 'lineno', 'funcName',
+                             'created', 'msecs', 'relativeCreated', 'thread',
+                             'threadName', 'processName', 'process'}
+
 
 class SimpleJsonFormatter(logging.Formatter):
     level_to_name_mapping = _levelToName
@@ -34,10 +41,8 @@ class SimpleJsonFormatter(logging.Formatter):
             'path': record.pathname
         }
 
-        defaulf_log_record_fields = {'name', 'msg', 'args', 'levelname', 'levelno', 'pathname', 'filename', 'module', 'exc_info', 'exc_text', 'stack_info', 'lineno', 'funcName', 'created', 'msecs', 'relativeCreated', 'thread', 'threadName', 'processName', 'process'}
-
         for field, value in record.__dict__.items():
-            if field not in defaulf_log_record_fields:
+            if field not in DEFAULT_LOG_RECORD_FIELDS:
                 msg[field] = value
 
         if isinstance(record.msg, dict):
@@ -46,8 +51,6 @@ class SimpleJsonFormatter(logging.Formatter):
             msg['msg'] = record.msg
 
         if record.exc_info:
-            msg['exc_info'] = record.exc_info
-        if record.exc_text:
-            msg['exc_text'] = record.exc_text
+            msg['exc_class'], msg['exc_msg'], msg['exc_traceback'] = record.exc_info
 
         return self.serializer(msg, default=self._default_json_handler)

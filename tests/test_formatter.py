@@ -5,7 +5,7 @@ import inspect
 from datetime import datetime
 from io import StringIO
 
-from simple_json_formatter import SimpleJsonFormatter
+from simple_json_logging_formatter import SimpleJsonFormatter
 from freezegun import freeze_time
 
 
@@ -13,7 +13,6 @@ class LoggerTests(unittest.TestCase):
     def setUp(self):
         self.buffer = StringIO()
         handler = logging.StreamHandler(stream=self.buffer)
-        handler.setLevel(logging.DEBUG)
         handler.setFormatter(SimpleJsonFormatter(json.dumps))
         logging.getLogger().addHandler(handler)
         logging.getLogger().setLevel(logging.INFO)
@@ -79,7 +78,9 @@ class LoggerTests(unittest.TestCase):
         logged_content = self.buffer.getvalue()
         json_log = json.loads(logged_content)
 
-        exc_class, exc_message, exc_traceback = json_log['exc_info']
+        exc_class= json_log['exc_class']
+        exc_message = json_log['exc_msg']
+        exc_traceback = json_log['exc_traceback']
         self.assertIn(member=exception_message,
                       container=exc_message)
 
