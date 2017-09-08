@@ -21,5 +21,7 @@ setup(
         'Programming Language :: Python :: 3.6'
     ],
     test_suite='tests',
-    tests_require=['freezegun', 'coverage', 'codecov']
+    tests_require=['freezegun', 'coverage', 'codecov'],
+    extras_require={'dev': ['factory_boy==2.8.1', 'pathlib2==2.1.0',
+                            'freezegun==0.3.9', 'coverage', 'codecov']}
 )
