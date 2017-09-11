@@ -1,6 +1,6 @@
 # Simple Json Logging Formatter
-[![Build Status](https://travis-ci.org/flaviocpontes/simple_json_logging_formatter.svg?branch=master)](https://travis-ci.org/flaviocpontes/simple_json_logging_formatter)
-[![codecov](https://codecov.io/gh/flaviocpontes/simple_json_logging_formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/flaviocpontes/simple_json_logging_formatter)
+[![Build Status](https://travis-ci.org/flaviocpontes/simple_json_log_formatter.svg?branch=master)](https://travis-ci.org/flaviocpontes/simple_json_log_formatter)
+[![codecov](https://codecov.io/gh/flaviocpontes/simple_json_log_formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/flaviocpontes/simple_json_log_formatter)
 
 This is a fork of `simple_json_logger`,  extracting the formatter into it's own project.
 
@@ -37,4 +37,4 @@ And then simply call `logging.info('TEST')`. It should print something like this
 
 ## Compatibility
 
-Python versions 3.3+ are supported.
+Python versions 3.4+ are supported.
