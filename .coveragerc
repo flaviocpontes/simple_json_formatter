@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = simple_json_logging_formatter
+source = simple_json_log_formatter
 
 [report]
 exclude_lines =

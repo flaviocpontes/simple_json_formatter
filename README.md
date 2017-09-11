@@ -1,6 +1,6 @@
 # Simple Json Logging Formatter
-[![Build Status](https://travis-ci.org/flaviocpontes/simple_json_formatter.svg?branch=master)](https://travis-ci.org/flaviocpontes/simple_json_formatter)
-[![codecov](https://codecov.io/gh/flaviocpontes/simple_json_formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/flaviocpontes/simple_json_formatter)
+[![Build Status](https://travis-ci.org/flaviocpontes/simple_json_logging_formatter.svg?branch=master)](https://travis-ci.org/flaviocpontes/simple_json_logging_formatter)
+[![codecov](https://codecov.io/gh/flaviocpontes/simple_json_logging_formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/flaviocpontes/simple_json_logging_formatter)
 
 This is a fork of `simple_json_logger`,  extracting the formatter into it's own project.
 
@@ -19,7 +19,7 @@ For example, to print the JSON logs to the current stream, set up the logger wit
 
 ```python
 import json, logging
-from simple_json_logging_formatter import SimpleJsonFormatter
+from simple_json_log_formatter import SimpleJsonFormatter
 handler = logging.StreamHandler()
 handler.setFormatter(SimpleJsonFormatter(json.dumps))
 logging.getLogger().addHandler(handler)

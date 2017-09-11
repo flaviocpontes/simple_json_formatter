@@ -5,7 +5,7 @@ import inspect
 from datetime import datetime
 from io import StringIO
 
-from simple_json_logging_formatter import SimpleJsonFormatter
+from simple_json_log_formatter import SimpleJsonFormatter
 from freezegun import freeze_time
 
 
