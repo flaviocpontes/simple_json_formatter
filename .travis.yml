@@ -5,6 +5,8 @@ python:
 - '3.6'
 - nightly
 - pypy3
+before_install:
+  - pip install --user codecov
 install: pip install .[dev]
 script: coverage run setup.py test
 after_success:
