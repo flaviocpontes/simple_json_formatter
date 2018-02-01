@@ -4,7 +4,6 @@ python:
 - '3.4'
 - '3.5'
 - '3.6'
-- nightly
 - pypy3
 install: pip install .[dev]
 script: coverage run setup.py test

@@ -20,7 +20,7 @@ setup(
     download_url='https://github.com/flaviocpontes/simple_json_log_formatter/archive/0.4.2.tar.gz',
     author=__author__,
     author_email=__author_email__,
-    python_requires='>=3.4',
+    python_requires='>=2.7',
     keywords='logging json log output formatter',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
