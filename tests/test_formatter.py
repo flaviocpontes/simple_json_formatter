@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 import logging
 import json
@@ -117,10 +118,9 @@ class LoggerTests(unittest.TestCase):
         json_log = json.loads(logged_content)
 
         expected_output = {
-            'msg': 'Isto é um teste',
+            'msg': u'Isto é um teste',
             'field_1': 'field_1 content',
             'field_2': 'field_2 content',
             'field_3': 'field_3 content'
         }
         self.assertDictContainsSubset(expected_output, json_log)
-

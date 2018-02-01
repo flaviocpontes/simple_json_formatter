@@ -1,9 +1,31 @@
+# -*- coding: utf-8 -*-
+import six
 import logging
-from logging import _levelToName
 
 import datetime
 import traceback
 from inspect import istraceback
+
+if six.PY2:
+    str = unicode
+
+CRITICAL = 50
+FATAL = CRITICAL
+ERROR = 40
+WARNING = 30
+WARN = WARNING
+INFO = 20
+DEBUG = 10
+NOTSET = 0
+
+_levelToName = {
+    CRITICAL: 'CRITICAL',
+    ERROR: 'ERROR',
+    WARNING: 'WARNING',
+    INFO: 'INFO',
+    DEBUG: 'DEBUG',
+    NOTSET: 'NOTSET',
+}
 
 DEFAULT_LOG_RECORD_FIELDS = {'name', 'msg', 'args', 'levelname', 'levelno',
                              'pathname', 'filename', 'module', 'exc_info',
@@ -23,27 +45,27 @@ class SimpleJsonFormatter(logging.Formatter):
     @staticmethod
     def _default_json_handler(obj):
         if isinstance(obj, (datetime.date, datetime.time)):
-            return obj.isoformat()
+            return str(obj.isoformat())
         elif istraceback(obj):
-            tb = ''.join(traceback.format_tb(obj))
+            tb = u''.join(traceback.format_tb(obj))
             return tb.strip()
         elif isinstance(obj, Exception):
-            return "Exception: {}".format(str(obj))
+            return u"Exception: {}".format(str(obj))
         return str(obj)
 
     def format(self, record):
         msg = {
-            'timestamp': datetime.datetime.now().isoformat(),
+            'timestamp': str(datetime.datetime.now().isoformat()),
             'line_number': record.lineno,
-            'function': record.funcName,
-            'module': record.module,
-            'level': self.level_to_name_mapping[record.levelno],
-            'path': record.pathname
+            'function': str(record.funcName),
+            'module': str(record.module),
+            'level': str(self.level_to_name_mapping[record.levelno]),
+            'path': str(record.pathname)
         }
 
         for field, value in record.__dict__.items():
             if field not in DEFAULT_LOG_RECORD_FIELDS:
-                msg[field] = value
+                msg[field] = str(value)
 
         if isinstance(record.msg, dict):
             msg.update(record.msg)
@@ -53,4 +75,4 @@ class SimpleJsonFormatter(logging.Formatter):
         if record.exc_info:
             msg['exc_class'], msg['exc_msg'], msg['exc_traceback'] = record.exc_info
 
-        return self.serializer(msg, default=self._default_json_handler)
+        return str(self.serializer(msg, default=self._default_json_handler))

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from os import path
 from setuptools import setup, find_packages
 from simple_json_log_formatter import __version__, __author__,\
@@ -25,6 +26,7 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6'

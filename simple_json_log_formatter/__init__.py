@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .formatter import SimpleJsonFormatter
 
 __version_info__ = (0, 4, 2)
