@@ -45,7 +45,7 @@ Testing
 Compatibility
 -------------
 
-Python versions 3.4+ are supported.
+Python versions 2.7 and 3.4+ are supported.
 
 .. |Build Status| image:: https://travis-ci.org/flaviocpontes/simple_json_log_formatter.svg?branch=master
    :target: https://travis-ci.org/flaviocpontes/simple_json_log_formatter

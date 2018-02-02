@@ -37,4 +37,4 @@ And then simply call `logging.info('TEST')`. It should print something like this
 
 ## Compatibility
 
-Python versions 3.4+ are supported.
+Python versions 2.7 and 3.4+ are supported.
