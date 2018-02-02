@@ -17,7 +17,7 @@ setup(
     packages=find_packages(exclude=['tests']),
     package_data={'': ['README.rst', ]},
     url='https://github.com/flaviocpontes/simple_json_log_formatter',
-    download_url='https://github.com/flaviocpontes/simple_json_log_formatter/archive/0.4.2.tar.gz',
+    download_url='https://github.com/flaviocpontes/simple_json_log_formatter/archive/0.5.0.tar.gz',
     author=__author__,
     author_email=__author_email__,
     python_requires='>=2.7',
