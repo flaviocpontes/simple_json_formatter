@@ -1,6 +1,7 @@
 # Simple Json Logging Formatter
 [![Build Status](https://travis-ci.org/flaviocpontes/simple_json_log_formatter.svg?branch=master)](https://travis-ci.org/flaviocpontes/simple_json_log_formatter)
 [![codecov](https://codecov.io/gh/flaviocpontes/simple_json_log_formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/flaviocpontes/simple_json_log_formatter)
+[![Current version at PyPI](https://img.shields.io/pypi/v/simple_json_log_formatter.svg)](https://pypi.python.org/pypi/simple_json_log_formatter)
 
 This is a fork of `simple_json_logger`,  extracting the formatter into it's own project.
 

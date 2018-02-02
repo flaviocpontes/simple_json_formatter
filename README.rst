@@ -1,7 +1,7 @@
 Simple Json Logging Formatter
 =============================
 
-|Build Status| |codecov|
+|Build Status| |codecov| |Current version at PyPI|
 
 This is a fork of ``simple_json_logger``, extracting the formatter into
 it's own project.
@@ -51,3 +51,5 @@ Python versions 2.7 and 3.4+ are supported.
    :target: https://travis-ci.org/flaviocpontes/simple_json_log_formatter
 .. |codecov| image:: https://codecov.io/gh/flaviocpontes/simple_json_log_formatter/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/flaviocpontes/simple_json_log_formatter
+.. |Current version at PyPI| image:: https://img.shields.io/pypi/v/simple_json_log_formatter.svg
+   :target: https://pypi.python.org/pypi/simple_json_log_formatter
