@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from .formatter import SimpleJsonFormatter
 
-__version_info__ = (0, 5, 0)
+__version_info__ = (0, 5, 1)
 __version__ = '.'.join(map(str, __version_info__))
 
 __title__ = 'Simple JSON Log Formatter'

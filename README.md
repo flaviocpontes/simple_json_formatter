@@ -10,7 +10,7 @@ It formats the Python logging.Record into a JSON suitable for indexing engines l
 
 ## Installation
 
-`pip install simple_json_logging_formatter`
+`pip install simple_json_log_formatter`
 
 ## Usage
 

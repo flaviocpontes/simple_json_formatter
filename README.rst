@@ -12,7 +12,7 @@ engines like Logstash and AWS CloudWatch Logs.
 Installation
 ------------
 
-``pip install simple_json_logging_formatter``
+``pip install simple_json_log_formatter``
 
 Usage
 -----
