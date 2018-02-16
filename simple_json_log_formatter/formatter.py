@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-import six
 import logging
-import json
+import sys
 
 import datetime
 import traceback
 from inspect import istraceback
 
-if six.PY2:
+PYTHON_MAJOR_VERSION = sys.version_info[0]
+
+if PYTHON_MAJOR_VERSION == 2:
     str = unicode
 
 CRITICAL = 50
@@ -39,7 +40,7 @@ DEFAULT_LOG_RECORD_FIELDS = {'name', 'msg', 'args', 'levelname', 'levelno',
 class SimpleJsonFormatter(logging.Formatter):
     level_to_name_mapping = _levelToName
 
-    def __init__(self, serializer=json.dumps):
+    def __init__(self, serializer):
         super(SimpleJsonFormatter, self).__init__()
         self.serializer = serializer
 
