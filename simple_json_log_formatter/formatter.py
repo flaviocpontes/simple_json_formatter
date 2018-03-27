@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import sys
+import json
 
 import datetime
 import traceback
@@ -40,7 +41,7 @@ DEFAULT_LOG_RECORD_FIELDS = {'name', 'msg', 'args', 'levelname', 'levelno',
 class SimpleJsonFormatter(logging.Formatter):
     level_to_name_mapping = _levelToName
 
-    def __init__(self, serializer):
+    def __init__(self, fmt=None, datefmt=None, style='%', serializer=json.dumps):
         super(SimpleJsonFormatter, self).__init__()
         self.serializer = serializer
 
