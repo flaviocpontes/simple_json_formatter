@@ -72,6 +72,11 @@ class SimpleJsonFormatter(logging.Formatter):
 
         if isinstance(record.msg, dict):
             msg.update(record.msg)
+        elif '%' in record.msg and len(record.args) > 0:
+            try:
+                msg['msg'] = (record.msg % record.args)
+            except ValueError:
+                msg['msg'] = record.msg
         else:
             msg['msg'] = record.msg
 
