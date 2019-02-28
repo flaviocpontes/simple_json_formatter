@@ -124,3 +124,42 @@ class LoggerTests(unittest.TestCase):
             'field_3': 'field_3 content'
         }
         self.assertDictContainsSubset(expected_output, json_log)
+
+    def test_percent_operator(self):
+        logging.info('Isto %r um teste com %s per cento s', 'e', 'formato')
+
+        logged_content = self.buffer.getvalue()
+        json_log = json.loads(logged_content)
+
+        expected_output = {
+            'msg': u"Isto 'e' um teste com formato per cento s",
+        }
+
+        print(logged_content)
+        self.assertDictContainsSubset(expected_output, json_log)
+
+    def test_percent_float_operator(self):
+        logging.info('Teste float format: %.2f', 2)
+
+        logged_content = self.buffer.getvalue()
+        json_log = json.loads(logged_content)
+
+        expected_output = {
+            'msg': u"Teste float format: 2.00",
+        }
+
+        print(logged_content)
+        self.assertDictContainsSubset(expected_output, json_log)
+
+    def test_percent_exception(self):
+        logging.info('Teste de Exception: %', 2)
+
+        logged_content = self.buffer.getvalue()
+        json_log = json.loads(logged_content)
+
+        expected_output = {
+            'msg': u'Teste de Exception: %',
+        }
+
+        print(logged_content)
+        self.assertDictContainsSubset(expected_output, json_log)
